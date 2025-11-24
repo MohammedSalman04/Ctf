@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modbus Mystery – OT</title>
+  <style>
+    body { background:#1b1b1b; color:#f2f2f2; font-family:Courier New,monospace; padding:30px; }
+    h1 { color:#9b59b6; }
+    input { width:60px; padding:6px; margin:5px; background:#333; color:#f2f2f2; border:1px solid #555; border-radius:3px; }
+    button { padding:6px 12px; background:#27ae60; color:#fff; border:none; border-radius:3px; cursor:pointer; }
+    pre { background:#2c2c2c; padding:10px; margin-top:20px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <h1>Modbus Mystery – OT HMI</h1>
+  <p>Read registers 10–12 and hex-decode to see the flag.</p>
+  <input id="reg" placeholder="10" />
+  <button onclick="readReg()">Read</button>
+  <div id="out"></div>
+  <pre id="flagout"></pre>
+  <script>
+    const regs = {
+      10: "4354467b4f54",     // hex for 'CTF{OT'
+      11: "5f4d4f445f4f57",   // hex for '_MOD_OW'
+      12: "534f52435f7d00"    // hex for 'SORC_}' plus null
+    };
+    let collected = [];
+    function readReg() {
+      const r = parseInt(document.getElementById('reg').value);
+      const v = regs[r];
+      const o = document.getElementById('out');
+      if (v) {
+        o.textContent += `Reg ${r}: ${v}\n`;
+        collected.push(v);
+        if (collected.length === 3) {
+          const hexStr = collected.join('');
+          const hex = hexStr.replace(/00$/, ''); // strip null
+          let str = '';
+          for (let i = 0; i < hex.length; i += 2) {
+            str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+          }
+          document.getElementById('flagout').textContent = str;
+        }
+      } else {
+        o.textContent += `Reg ${r}: ERROR\n`;
+      }
+    }
+  </script>
+</body>
+</html>

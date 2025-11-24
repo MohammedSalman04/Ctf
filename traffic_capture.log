@@ -1,0 +1,19 @@
+[**] [1:2025:1] ET MALWARE Suspicious Traffic Detected [**]
+08/19-14:33:21.101122 [**] SRC=192.168.56.101 DST=10.0.0.20 PROTO=TCP
+Payload: 12 43 54 46 7b 73 6e 69 66 66 5f 74 68 65 5f 11
+
+[**] [1:2025:2] ET MALWARE Suspicious Continuation [**]
+08/19-14:33:22.101122 [**] SRC=192.168.56.101 DST=10.0.0.20 PROTO=TCP
+Payload: ab 34 ff 77 21 10 9c 88 3a 7e 65 90 aa 55 39 fe
+
+[**] [1:2025:3] ET INFO TCP Stream Anomaly (checksum mismatch, expected XOR key=0x55) [**]
+08/19-14:33:23.101122 [**] SRC=192.168.56.102 DST=10.0.0.20 PROTO=TCP
+Payload: 3d 88 4a b2 19 0a 2f 7c 55 11 cd 7f ae 21 43 09
+
+[**] [1:2025:4] ET MALWARE Suspicious Fragmented Traffic [**]
+08/19-14:33:24.101122 [**] SRC=192.168.56.103 DST=10.0.0.20 PROTO=TCP
+Payload: 72 a0 33 54 99 42 1a d1 8f 23 00 77 39 20 88 ee
+
+[**] [1:2025:5] ET MALWARE Suspicious Continuation [**]
+08/19-14:33:25.101122 [**] SRC=192.168.56.101 DST=10.0.0.20 PROTO=TCP
+Payload: 74 72 75 74 68 5f 75 70 64 61 74 65 64 7d 19 44

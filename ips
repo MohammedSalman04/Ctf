@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WAF Wrangler – IPS</title>
+  <style>
+    body { background:#292b2c; color:#ddd; font-family:Verdana,sans-serif; padding:30px; }
+    h1 { color:#3498db; }
+    input { width:80%; padding:8px; margin:5px 0; background:#444; color:#fff; border-radius:3px; border:1px solid #555; }
+    button { padding:8px 16px; background:#e67e22; color:#fff; border:none; border-radius:3px; cursor:pointer; }
+    button:hover { background:#d35400; }
+    pre { background:#222; padding:10px; margin-top:20px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <h1>WAF Wrangler – IPS Simulator</h1>
+  <p>Input your payload:</p>
+  <input id="payload" placeholder="Enter here" /><button onclick="run()">Execute</button>
+  <pre id="output"></pre>
+  <script>
+    function run() {
+      const p = document.getElementById('payload').value;
+      const bad = /(script|flag|ctf|\.\.\/)/i;
+      const out = document.getElementById('output');
+      if (bad.test(p)) {
+        out.textContent = 'Blocked by WAF';
+      } else {
+        out.textContent = 'Executed: ' + p;
+      }
+    }
+  </script>
+  <p>Bypass the filter to execute <code>echo \"<span style="color:#e74c3c">CTF{IPS_HOM0GLYPH_9x0z}</span>\"</code></p>
+</body>
+</html>

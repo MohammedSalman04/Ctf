@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sensor Saga – IoT</title>
+  <style>
+    body { background:#041f3e; color:#cfe0e8; font-family:Arial,sans-serif; padding:40px; text-align:center; }
+    h1 { color:#66fcf1; }
+    button { margin:10px; padding:12px 20px; background:#0b3d91; color:#fff; border:none; border-radius:4px; font-size:16px; cursor:pointer; }
+    button:hover { background:#1b6ca8; }
+    #fragments { margin-top:20px; }
+    .frag { background:#12213e; padding:8px; margin:5px; display:inline-block; border-radius:3px; }
+    #flag { margin-top:30px; font-size:20px; color:#e1ce0a; }
+  </style>
+</head>
+<body>
+  <h1>Sensor Saga – Smart ICY Sensors</h1>
+  <p>Click sensors in the right order to get the full flag.</p>
+  <button onclick="read(0)">Temperature</button>
+  <button onclick="read(1)">Humidity</button>
+  <button onclick="read(2)">Pressure</button>
+  <div id="fragments"></div>
+  <div id="flag"></div>
+  <script>
+    const parts = ["CTF{I0T_", "SENSOR_", "_EP1C}"];
+    let seq = [];
+    function read(i) {
+      if (!seq.includes(i)) {
+        const frag = parts[i];
+        const node = document.createElement('div');
+        node.className = 'frag';
+        node.textContent = frag;
+        document.getElementById('fragments').appendChild(node);
+        seq.push(i);
+      }
+      if (seq.length === 3) {
+        const flag = parts[seq[0]] + parts[seq[1]] + parts[seq[2]];
+        document.getElementById('flag').textContent = flag;
+      }
+    }
+  </script>
+</body>
+</html>
